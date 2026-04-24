@@ -1,6 +1,16 @@
-streamlit==1.35.0
+# Core Data & ML Libraries
 pandas==2.1.4
 numpy==1.26.4
 scikit-learn==1.4.2
+
+# Web Framework
+streamlit==1.35.0
+
+# Visualization
 plotly==5.22.0
+
+# API & LLM
+google-generativeai>=0.3.0
+
+# Utilities
 python-dotenv==1.0.1

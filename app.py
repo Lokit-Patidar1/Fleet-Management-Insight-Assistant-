@@ -197,7 +197,8 @@ def get_raw_data(source: str, file_bytes=None) -> pd.DataFrame:
 
 @st.cache_data(show_spinner=False)
 def get_processed_data(raw_df_json: str) -> pd.DataFrame:
-    raw_df = pd.read_json(raw_df_json)
+    import io
+    raw_df = pd.read_json(io.StringIO(raw_df_json))
     return preprocess_data(raw_df)
 
 @st.cache_resource(show_spinner=False)

@@ -1,0 +1,89 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Python Distribution / Packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environment Variables (SECURITY - Never commit API keys)
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Pytest & Testing
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Logs
+*.log
+logs/
+
+# OS Files
+Thumbs.db
+.DS_Store
+
+# Streamlit Cache
+.streamlit/secrets.toml
+.streamlit/cache/
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Node (if applicable)
+node_modules/
+npm-debug.log
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Data backups (optional - uncomment if data files are large)
+# data/*.csv.bak
+
+# Model checkpoints (optional - uncomment if models are large)
+# models/*.pkl
+# models/*.joblib

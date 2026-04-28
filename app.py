@@ -12,7 +12,10 @@ import pandas as pd
 import numpy as np
 
 from dotenv import load_dotenv
-load_dotenv()
+
+# Load .env from the app's directory (works when deployed)
+env_path = os.path.join(os.path.dirname(__file__), ".env")
+load_dotenv(env_path)
 
 # ── Path setup ──────────────────────────────
 sys.path.insert(0, os.path.dirname(__file__))
@@ -360,6 +363,10 @@ with tab_ml:
 with tab_query:
     st.markdown('<div class="section-header">💬 Natural Language Query Assistant</div>', unsafe_allow_html=True)
 
+    # Initialize session state for query if not exists
+    if "query_input" not in st.session_state:
+        st.session_state["query_input"] = ""
+
     # Build vector store (cached on df shape)
     with st.spinner("Building knowledge base..."):
         docs = build_documents(df)
@@ -378,12 +385,12 @@ with tab_query:
         "What is the average distance travelled?",
         "Which vehicle is most fuel efficient?",
     ]
-    query_input = st.session_state.get("query_input", "")
 
     for i, (col, eq) in enumerate(zip(ex_cols, example_queries)):
         with col:
-            if st.button(f"📌 {eq}", key=f"ex_{i}", use_container_width=True):
+            if st.button(f"📌 {eq}", key=f"example_btn_{i}", use_container_width=True):
                 st.session_state["query_input"] = eq
+                st.rerun()
 
     st.markdown("</div>", unsafe_allow_html=True)
 

@@ -13,11 +13,9 @@ import numpy as np
 
 from dotenv import load_dotenv
 
-# Load .env from the app's directory (works when deployed)
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(env_path)
 
-# ── Path setup ──────────────────────────────
 sys.path.insert(0, os.path.dirname(__file__))
 
 from utils.data_processor import load_data, preprocess_data, get_summary_stats
@@ -38,9 +36,6 @@ from utils.charts import (
 )
 from rag.rag_pipeline import build_documents, FleetVectorStore, generate_rag_answer
 
-# ════════════════════════════════════════════
-# PAGE CONFIG
-# ════════════════════════════════════════════
 st.set_page_config(
     page_title="Fleet Management Insight Assistant",
     page_icon="🚛",
@@ -48,9 +43,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ════════════════════════════════════════════
-# CUSTOM CSS
-# ════════════════════════════════════════════
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap');
@@ -138,10 +130,6 @@ footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
-
-# ════════════════════════════════════════════
-# HERO BANNER
-# ════════════════════════════════════════════
 st.markdown("""
 <div class="hero-banner">
     <h1>🚛 Fleet Management Insight Assistant</h1>
@@ -150,9 +138,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ════════════════════════════════════════════
-# SIDEBAR
-# ════════════════════════════════════════════
 with st.sidebar:
     st.markdown("## ⚙️ Configuration")
     st.markdown("---")
@@ -185,9 +170,7 @@ with st.sidebar:
     st.caption("College Major Project | Fleet Management Insight Assistant | Built with Streamlit + scikit-learn + FAISS + Sentence Transformers")
 
 
-# ════════════════════════════════════════════
-# DATA LOADING (cached)
-# ════════════════════════════════════════════
+
 @st.cache_data(show_spinner=False)
 def get_raw_data(source: str, file_bytes=None) -> pd.DataFrame:
     if source == "upload" and file_bytes is not None:
@@ -227,17 +210,12 @@ if df.empty:
     st.error("Dataset is empty or could not be loaded.")
     st.stop()
 
-# ════════════════════════════════════════════
-# TABS
-# ════════════════════════════════════════════
+
 tab_dash, tab_ml, tab_query, tab_data = st.tabs([
     "📊 Dashboard", "🤖 ML Insights", "💬 Query Assistant", "🗂️ Raw Data"
 ])
 
 
-# ──────────────────────────────────────────
-# TAB 1: DASHBOARD
-# ──────────────────────────────────────────
 with tab_dash:
     stats = get_summary_stats(df)
 
@@ -279,9 +257,6 @@ with tab_dash:
             st.plotly_chart(vehicle_type_pie(df), use_container_width=True)
 
 
-# ──────────────────────────────────────────
-# TAB 2: ML INSIGHTS
-# ──────────────────────────────────────────
 with tab_ml:
     st.markdown('<div class="section-header">🤖 Machine Learning Models</div>', unsafe_allow_html=True)
 
@@ -357,9 +332,6 @@ with tab_ml:
             )
 
 
-# ──────────────────────────────────────────
-# TAB 3: QUERY ASSISTANT (RAG)
-# ──────────────────────────────────────────
 with tab_query:
     st.markdown('<div class="section-header">💬 Natural Language Query Assistant</div>', unsafe_allow_html=True)
 
@@ -426,9 +398,6 @@ with tab_query:
                 st.divider()
 
 
-# ──────────────────────────────────────────
-# TAB 4: RAW DATA
-# ──────────────────────────────────────────
 with tab_data:
     st.markdown('<div class="section-header">🗂️ Fleet Dataset</div>', unsafe_allow_html=True)
 

@@ -13,9 +13,6 @@ import numpy as np
 import pandas as pd
 import re
 
-# ─────────────────────────────────────────────
-# DOCUMENT BUILDER
-# ─────────────────────────────────────────────
 
 def build_documents(df: pd.DataFrame) -> list[dict]:
     """Convert each DataFrame row into a text document for RAG."""
@@ -30,9 +27,6 @@ def build_documents(df: pd.DataFrame) -> list[dict]:
     return docs
 
 
-# ─────────────────────────────────────────────
-# VECTOR STORE (FAISS)
-# ─────────────────────────────────────────────
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -68,9 +62,6 @@ class FleetVectorStore:
         return results
 
 
-# ─────────────────────────────────────────────
-# RULE-BASED QUERY ANSWERING (Fallback)
-# ─────────────────────────────────────────────
 
 def rule_based_answer(query: str, df: pd.DataFrame) -> str:
     """Simple keyword-based query answering on the fleet dataframe."""
@@ -167,9 +158,6 @@ def rule_based_answer(query: str, df: pd.DataFrame) -> str:
     )
 
 
-# ─────────────────────────────────────────────
-# LLM-ENHANCED ANSWERING (Gemini API)
-# ─────────────────────────────────────────────
 
 def generate_rag_answer(
     query: str,

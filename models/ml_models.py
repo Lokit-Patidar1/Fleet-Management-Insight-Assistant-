@@ -16,9 +16,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-# ─────────────────────────────────────────────
-# REGRESSION MODEL
-# ─────────────────────────────────────────────
 
 REGRESSION_FEATURES = [
     "distance_travelled", "fuel_consumption",
@@ -73,9 +70,6 @@ def predict_maintenance(model, features: list, input_vals: dict) -> float:
     return round(float(model.predict(X_input)[0]), 2)
 
 
-# ─────────────────────────────────────────────
-# ANOMALY DETECTION MODEL
-# ─────────────────────────────────────────────
 
 ANOMALY_FEATURES = [
     "distance_travelled", "fuel_consumption",
